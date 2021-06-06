@@ -1,0 +1,29 @@
+.page-content {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 10%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.heading {
+  text-align: center;
+  padding: 1.5rem;
+}
+.vertical-align-icon-text {
+  display: flex;
+  align-items: center;
+}
+.control-label {
+  font-size: 18px;
+}
+.btn-submit {
+  margin-bottom: 1.5rem;
+}
+.invalid-feedback {
+  color: red;
+}
+.is-invalid {
+  border-bottom: 1px solid red;
+  box-shadow: 0 1px 0 0 red;
+}
