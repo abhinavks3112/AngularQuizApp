@@ -1,11 +1,11 @@
-<div class="page-content">
-    <div class="col l3 m8 s10">
-        <div class="card">
-            <div class="col s6 m6 l6 heading">
-                <h4>Quiz Registration</h4>
-            </div>
-            <div class="card-content">
-                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="page-content">
+        <div class="col l3 m8 s10">
+            <div class="card">
+                <div class="col s6 m6 l6 heading">
+                    <h4>Quiz Registration</h4>
+                </div>
+                <div class="card-content">
                     <div class="form-group row">
                         <div class="vertical-align-icon-text col s12 l12 m12"
                             [ngClass]="{'invalid-feedback': formErrors.fullName}">
@@ -38,11 +38,11 @@
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="card-footer center">
-                <button class="btn-large btn-submit" type="submit" [disabled]="registerForm.invalid">Start</button>
+                </div>
+                <div class="card-footer center">
+                    <button class="btn-large btn-submit" type="submit" [disabled]="registerForm.invalid">Start</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>

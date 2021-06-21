@@ -19,11 +19,11 @@ export class RegisterComponent implements OnInit {
     fullName: new FormControl(),
     email: new FormControl()
   });
-   
-  participant: IParticipant = { id: -1, fullName: '', email: '',  score: 0, timeSpent: 0 };
+
+  participant: IParticipant = { Name: '', Email: '' };
 
   // Contain validation message for each validation for each form control
-   validationMessages: { [key: string]: any } = {
+  validationMessages: { [key: string]: any } = {
     'fullName': {
       'required': 'Full Name is required',
       'minlength': 'Full Name must be greater than 2 characters',
@@ -44,18 +44,22 @@ export class RegisterComponent implements OnInit {
   constructor(private formbuilder: FormBuilder,
     private quizService: QuizService,
     private router: Router) { }
-  
+
   ngOnInit(): void {
     this.registerForm = this.formbuilder.group({
       fullName: ["", [Validators.required, Validators.minLength(2), Validators.maxLength(30)]],
-      email: ["", [Validators.required, Validators.email,  Validators.minLength(6), Validators.maxLength(30)]]
+      email: ["", [Validators.required, Validators.email, Validators.minLength(6), Validators.maxLength(30)]]
     });
   }
 
-  onSubmit(){
+  onSubmit() {
     this.MapFormValuesToParticipantModel();
     this.quizService.addParticipant(this.participant).subscribe(
-      () => this.router.navigate(['/quiz'])
+      (data: any) => {
+        localStorage.clear();
+        localStorage.setItem('participant', JSON.stringify(data));
+        this.router.navigate(['/quiz']);
+      }
     );
   }
 
@@ -96,7 +100,7 @@ export class RegisterComponent implements OnInit {
   }
 
   MapFormValuesToParticipantModel() {
-    this.participant.fullName = this.registerForm.value.fullName;
-    this.participant.email = this.registerForm.value.emailGroup.email;
+    this.participant.Name = this.registerForm.value.fullName;
+    this.participant.Email = this.registerForm.value.email;
   }
 }

@@ -1,7 +1,4 @@
-export interface IParticipant{
-    id: number;
-    fullName: string;
-    email: string;
-    score: number;
-    timeSpent: number;
+export interface IParticipant {
+    Name: string;
+    Email: string;
 }
