@@ -1,119 +1,127 @@
-<form class="form-horizontal" [formGroup]="addQuestionForm" (ngSubmit)="onSubmit()">
-    <div class="page-content">
-        <div class="col l3 m8 s10">
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">{{ pageTitle }}</h3>
-                </div>
-                <div class="card-block mt-3">
-                    <div class="form-group">
-                        <label class="col s2 control-label" for="CategoryID">Category</label>
-                        <div class="col s4">
-                            <select class="form-control" id="CategoryID" formControlName="CategoryID" type="text"
-                                [ngClass]="{'is-invalid': formErrors.CategoryID}">
-                                <option value=null disabled="disabled">All Categories</option>
-                                <option *ngFor="let cat of categories" [value]=[cat.id]>{{ cat.name }}</option>
-                            </select>
-                        </div>
+<app-navbar></app-navbar>
+<form [formGroup]="addQuestionForm" (ngSubmit)="onSubmit()">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Content START -->
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title text-center">{{ pageTitle }}</h3>
                     </div>
-
-                    <div class="form-group">
-                        <label class="col s2 control-label" for="Qn">Question<span style="color: red;">*</span></label>
-                        <div class="col s4">
-                            <input class="form-control validate" id="Qn" formControlName="Qn" type="text"
-                                [ngClass]="{'is-invalid': formErrors.Qn}" (blur)="logValidationErrors()">
-                            <span data-error="wrong" data-success="right">{{ formErrors.Qn }}</span>
-                            <div class="invalid-feedback" *ngIf="formErrors.Qn">
-                                {{ formErrors.Qn }}
+                    <div class="card-block p-3">
+                        <div class="form-group row my-4">
+                            <label class="col-lg-4 col-md-4 col-sm-4 control-label" for="CategoryID">Category</label>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <select class="form-control" id="CategoryID" formControlName="CategoryID" type="text"
+                                    [ngClass]="{'is-invalid': formErrors.CategoryID}">
+                                    <option value=null disabled="disabled">All Categories</option>
+                                    <option *ngFor="let cat of categories" [value]=[cat.id]>{{ cat.name }}</option>
+                                </select>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Image part- to do-->
-                    <!-- <div class="form-group row">
-                <label class="col-sm-2 control-label ml-3" for="imageName">Image</label>
-                <div class="col s4">
-                    <input class="form-control validate" id="imageName" formControlName="imageName" type="text"
-                        [ngClass]="{'is-invalid': formErrors.imageName}" (blur)="logValidationErrors()">
-                    <span data-error="wrong" data-success="right">{{ formErrors.imageName }}</span>
-                    <div class="invalid-feedback" *ngIf="formErrors.imageName">
-                        {{ formErrors.imageName }}
-                    </div>
-                </div>
-            </div> -->
-
-                    <div class="form-group">
-                        <label class="col s2 control-label" for="Option1">Option 1<span
-                                style="color: red;">*</span></label>
-                        <div class="col s4">
-                            <input class="form-control" id="Option1" formControlName="Option1" type="text"
-                                [ngClass]="{'is-invalid': formErrors.Option1 }" (blur)="logValidationErrors()">
-                            <div class="invalid-feedback" *ngIf="formErrors.Option1">
-                                <span>{{ formErrors.Option1 }}</span>
+                        <div class="form-group row my-4">
+                            <label class="col-lg-4 col-md-4 col-sm-4 control-label" for="Qn">Question<span
+                                    style="color: red;">*</span></label>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <input class="form-control validate" id="Qn" formControlName="Qn" type="text"
+                                    [ngClass]="{'is-invalid': formErrors.Qn}" (blur)="logValidationErrors()">
+                                <div class="invalid-feedback" *ngIf="formErrors.Qn">
+                                    {{ formErrors.Qn }}
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="col s2 control-label" for="Option2">Option2<span
-                                style="color: red;">*</span></label>
-                        <div class="col s4">
-                            <input class="form-control" id="Option2" formControlName="Option2" type="text"
-                                [ngClass]="{'is-invalid': formErrors.Option2 }" (blur)="logValidationErrors()">
-                            <div class="invalid-feedback" *ngIf="formErrors.Option2">
-                                <span>{{ formErrors.Option2 }}</span>
+                        <!-- Image part- to do-->
+                        <!-- <div class="form-group row">
+                        <label class="col-sm-4 control-label ml-3" for="imageName">Image</label>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <input class="form-control validate" id="imageName" formControlName="imageName" type="text"
+                                [ngClass]="{'is-invalid': formErrors.imageName}" (blur)="logValidationErrors()">
+                            <span data-error="wrong" data-success="right">{{ formErrors.imageName }}</span>
+                            <div class="invalid-feedback" *ngIf="formErrors.imageName">
+                                {{ formErrors.imageName }}
                             </div>
                         </div>
+                    </div> -->
+
+                        <div class="form-group row my-4">
+                            <label class="col-lg-4 col-md-4 col-sm-4 control-label" for="Option1">Option 1<span
+                                    style="color: red;">*</span></label>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <input class="form-control" id="Option1" formControlName="Option1" type="text"
+                                    [ngClass]="{'is-invalid': formErrors.Option1 }" (blur)="logValidationErrors()">
+                                <div class="invalid-feedback" *ngIf="formErrors.Option1">
+                                    <span>{{ formErrors.Option1 }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row my-4">
+                            <label class="col-lg-4 col-md-4 col-sm-4 control-label" for="Option2">Option2<span
+                                    style="color: red;">*</span></label>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <input class="form-control" id="Option2" formControlName="Option2" type="text"
+                                    [ngClass]="{'is-invalid': formErrors.Option2 }" (blur)="logValidationErrors()">
+                                <div class="invalid-feedback" *ngIf="formErrors.Option2">
+                                    <span>{{ formErrors.Option2 }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row my-4">
+                            <label class="col-lg-4 col-md-4 col-sm-4 control-label" for="Option3">Option3</label>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <input class="form-control" id="Option3" formControlName="Option3" type="text"
+                                    [ngClass]="{'is-invalid': formErrors.Option3 }" (blur)="logValidationErrors()">
+                            </div>
+                        </div>
+
+                        <div class="form-group row my-4">
+                            <label class="col-lg-4 col-md-4 col-sm-4 control-label" for="Option4">Option4</label>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <input class="form-control" id="Option4" formControlName="Option4" type="text"
+                                    [ngClass]="{'is-invalid': formErrors.Option4 }" (blur)="logValidationErrors()">
+                            </div>
+                        </div>
+
+                        <div class="form-group row my-4">
+                            <label class="col-lg-4 col-md-4 col-sm-4 control-label" for="Answer">Correct Option
+                                Number<span style="color: red;">*</span></label>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <input class="form-control" id="Answer" formControlName="Answer" type="text"
+                                    [ngClass]="{'is-invalid': formErrors.Answer}" (blur)="logValidationErrors()">
+                            </div>
+                            <div class="invalid-feedback" *ngIf="formErrors.qn">
+                                {{ formErrors.Answer }}
+                            </div>
+                        </div>
+
+                        <div class="form-group row my-4">
+                            <label class="col-lg-4 col-md-4 col-sm-4 control-label" for="Comment">Optional
+                                Comment</label>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <input class="form-control" id="Comment" formControlName="Comment" type="text"
+                                    [ngClass]="{'is-invalid': formErrors.Comment}" (blur)="logValidationErrors()">
+                            </div>
+                            <div class="invalid-feedback" *ngIf="formErrors.qn">
+                                {{ formErrors.Comment }}
+                            </div>
+                        </div>
+
+
                     </div>
 
-                    <div class="form-group">
-                        <label class="col s2 control-label" for="Option3">Option3</label>
-                        <div class="col s4">
-                            <input class="form-control" id="Option3" formControlName="Option3" type="text"
-                                [ngClass]="{'is-invalid': formErrors.Option3 }" (blur)="logValidationErrors()">
+                    <div class="card-footer row">
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                            <button class="btn btn-primary" type="submit"
+                                [disabled]="addQuestionForm.invalid">Save</button>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label class="col s2 control-label" for="Option4">Option4</label>
-                        <div class="col s4">
-                            <input class="form-control" id="Option4" formControlName="Option4" type="text"
-                                [ngClass]="{'is-invalid': formErrors.Option4 }" (blur)="logValidationErrors()">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col s2 control-label" for="Answer">Correct Option Number<span
-                                style="color: red;">*</span></label>
-                        <div class="col s4">
-                            <input class="form-control" id="Answer" formControlName="Answer" type="text"
-                                [ngClass]="{'is-invalid': formErrors.Answer}" (blur)="logValidationErrors()">
-                        </div>
-                        <div class="invalid-feedback" *ngIf="formErrors.qn">
-                            {{ formErrors.Answer }}
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col s2 control-label" for="Comment">Optional Comment</label>
-                        <div class="col s4">
-                            <input class="form-control" id="Comment" formControlName="Comment" type="text"
-                                [ngClass]="{'is-invalid': formErrors.Comment}" (blur)="logValidationErrors()">
-                        </div>
-                        <div class="invalid-feedback" *ngIf="formErrors.qn">
-                            {{ formErrors.Comment }}
-                        </div>
-                    </div>
-
-
-                </div>
-                <br />
-                <br />
-                <div class="card-footer">
-                    <button class="btn btn-primary mr-3" type="submit"
-                        [disabled]="addQuestionForm.invalid">Save</button>
                 </div>
             </div>
+            <!-- Content END -->
         </div>
     </div>
+
 </form>

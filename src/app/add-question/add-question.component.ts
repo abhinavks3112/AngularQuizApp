@@ -13,12 +13,12 @@ import { IQuestion } from '../IQuestion';
 export class AddQuestionComponent implements OnInit {
 
   categories: DropdownModel[] = [];
-  question: IQuestion = { QnID: -1, CategoryID: 1, Qn: '', ImageName: '', Option1: '', Option2: '', Option3: '', Option4: '', Answer: -1, Comment: '' };
+  question: IQuestion = { QnID: -1, CategoryID: 1, Qn: '', ImageName: '', Option1: '', Option2: '', Option3: '', Option4: '', Answer: 1, Comment: '' };
 
   addQuestionForm = this.formBuilder.group({
   });
 
-  pageTitle: string = 'Create Quiz Question and Answer';
+  pageTitle: string = 'Create Quiz';
 
   // Contain validation message for each validation for each form control
   validationMessages: { [key: string]: any } = {
@@ -65,11 +65,11 @@ export class AddQuestionComponent implements OnInit {
       QnID: [-1],
       Qn: ['', Validators.required],
       ImageName: [''],
-      Option1: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(25)]],
-      Option2: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(25)]],
-      Option3: ['', [Validators.minLength(6), Validators.maxLength(25)]],
-      Option4: ['', [Validators.minLength(6), Validators.maxLength(25)]],
-      Answer: [-1, [Validators.required, Validators.min(0), Validators.max(3)]],
+      Option1: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(25)]],
+      Option2: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(25)]],
+      Option3: ['', [Validators.minLength(1), Validators.maxLength(25)]],
+      Option4: ['', [Validators.minLength(1), Validators.maxLength(25)]],
+      Answer: [1, [Validators.required, Validators.min(0), Validators.max(3)]],
       Comment: ['']
     });
   }
@@ -146,20 +146,20 @@ export class AddQuestionComponent implements OnInit {
   }
 
   MapFormValuesToQuestionModel() {
-    this.question.Qn = this.addQuestionForm.value.qn;
+    this.question.Qn = this.addQuestionForm.controls.Qn.value;
     this.MapOptions();
-    this.question.Answer = this.addQuestionForm.value.answer;
-    this.question.Comment = this.addQuestionForm.value.comment;
+    this.question.Answer = this.addQuestionForm.controls.Answer.value;
+    this.question.Comment = this.addQuestionForm.controls.Comment.value;
   }
 
   MapOptions() {
-    this.question.Option1 = this.addQuestionForm.value.options.get('Option1').value;
-    this.question.Option2 = this.addQuestionForm.value.options.get('Option2').value;
-    if (this.addQuestionForm.value.options.get('Option3').value != '' && this.addQuestionForm.value.options.get('Option3').value != undefined) {
-      this.question.Option3 = this.addQuestionForm.value.options.get('Option3').value;
+    this.question.Option1 = this.addQuestionForm.controls.Option1.value;
+    this.question.Option2 = this.addQuestionForm.controls.Option2.value;
+    if (this.addQuestionForm.controls.Option3.value != '' && this.addQuestionForm.controls.Option3.value != undefined) {
+      this.question.Option3 = this.addQuestionForm.controls.Option3.value;
     }
-    if (this.addQuestionForm.value.options.get('Option4').value != '' && this.addQuestionForm.value.options.get('Option4').value != undefined) {
-      this.question.Option4 = this.addQuestionForm.value.options.get('Option4').value;
+    if (this.addQuestionForm.controls.Option4.value != '' && this.addQuestionForm.controls.Option4.value != undefined) {
+      this.question.Option4 = this.addQuestionForm.value.Option4.value;
     }
   }
 }
