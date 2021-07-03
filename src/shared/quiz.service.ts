@@ -4,6 +4,8 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { IQuestions } from 'src/app/IQuestions';
+import { DropdownModel } from './dropdown.model';
+import { IQuestion } from 'src/app/IQuestion';
 
 @Injectable()
 export class QuizService {
@@ -57,6 +59,22 @@ export class QuizService {
         body.Score = this.correctAnswerCount;
         body.TimeSpent = this.seconds;
         return this.httpClient.post(this.baseUrl + "/api/Participant/Update", body, {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        }).pipe(catchError(this.handleError));
+    }
+
+    GetQuestionCategories(): Observable<DropdownModel[]> {
+        return this.httpClient.get<DropdownModel[]>(this.baseUrl + "/api/Category/GetCategories", {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        }).pipe(catchError(this.handleError));
+    }
+
+    addQuestion(question: IQuestion): Observable<IQuestion> {
+        return this.httpClient.post<IQuestion>(this.baseUrl + "/api/Question/Insert", question, {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'
             })

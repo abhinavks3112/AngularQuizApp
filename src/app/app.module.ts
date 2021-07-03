@@ -11,6 +11,7 @@ import { ResultComponent } from './result/result.component';
 import { HttpClientModule } from '@angular/common/http';
 import { QuizService } from 'src/shared/quiz.service';
 import { AuthGuard } from './auth/auth.guard';
+import { AddQuestionComponent } from './add-question/add-question.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AuthGuard } from './auth/auth.guard';
     NavbarComponent,
     RegisterComponent,
     QuizComponent,
-    ResultComponent
+    ResultComponent,
+    AddQuestionComponent
   ],
   imports: [
     BrowserModule,
