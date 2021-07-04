@@ -81,4 +81,23 @@ export class QuizService {
         }).pipe(catchError(this.handleError));
     }
 
+    updateQuestion(question: IQuestion): Observable<boolean> {
+        return this.httpClient.put<boolean>(this.baseUrl + "/" + question.QnID, question, {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        }).pipe(catchError(this.handleError));
+    }
+
+    getAllQuestions(): Observable<IQuestion[]> {
+        return this.httpClient.get<IQuestion[]>(this.baseUrl + "/api/Question/GetAll").pipe(catchError(this.handleError));
+    }
+
+    getQuestion(QnID: number) {
+        let params = {
+            "QnID": QnID.toString()
+        };
+        return this.httpClient.get<IQuestion>(this.baseUrl + "/api/Question/Get", { params: params }).pipe(catchError(this.handleError));
+    }
+
 }

@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { QuizService } from 'src/shared/quiz.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AddQuestionComponent } from './add-question/add-question.component';
+import { ListQuestionComponent } from './list-question/list-question.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AddQuestionComponent } from './add-question/add-question.component';
     RegisterComponent,
     QuizComponent,
     ResultComponent,
-    AddQuestionComponent
+    AddQuestionComponent,
+    ListQuestionComponent
   ],
   imports: [
     BrowserModule,

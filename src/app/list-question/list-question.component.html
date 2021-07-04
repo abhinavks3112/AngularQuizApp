@@ -1,0 +1,23 @@
+<app-navbar></app-navbar>
+<div class="table-responsive">
+    <table class="table table-bordered" *ngIf="questions && questions.length">
+        <thead>
+            <tr class="bg-primary">
+                <th>Category</th>
+                <th>Question</th>
+                <th>Options</th>
+                <th>Comments</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let question of questions">
+                <td>{{ getCategoryName(question) }}</td>
+                <td>{{ question.Qn }}</td>
+                <td>{{ getOptions(question) }}</td>
+                <td>{{ question.Comment }}</td>
+                <td><button class="btn btn-primary" (click)="editButtonClick(question.QnID)">Edit</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

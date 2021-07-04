@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, MaxLengthValidator, MinLengthValidator, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DropdownModel } from 'src/shared/dropdown.model';
 import { QuizService } from 'src/shared/quiz.service';
 import { IQuestion } from '../IQuestion';
@@ -48,6 +48,7 @@ export class AddQuestionComponent implements OnInit {
   }
 
   constructor(private formBuilder: FormBuilder,
+    private _route: ActivatedRoute,
     public quizService: QuizService,
     private router: Router
   ) {
@@ -57,6 +58,16 @@ export class AddQuestionComponent implements OnInit {
   ngOnInit(): void {
     this.createForm();
     this.LoadCategories();
+    const QnID = Number(this._route.snapshot.paramMap.get('id'));
+    this._route.paramMap.subscribe(params => {
+      if (QnID) {
+        this.pageTitle = "Edit Question";
+        this.getQuestion(QnID);
+      }
+      else {
+        this.pageTitle = "Create Question";
+      }
+    });
   }
 
   createForm() {
@@ -82,35 +93,30 @@ export class AddQuestionComponent implements OnInit {
       () => console.log("Question Categories has been fetched successfully"));
   }
 
-  // getEmployee(id: number) {
-  //   this.employeeService.getEmployee(id).subscribe(
-  //     (employee: IEmployee) => {
-  //       this.editEmployee(employee);
-  //       this.employee = employee;
-  //     },
-  //     (err: any) => console.log(err)
-  //   );
-  // }
+  getQuestion(id: number) {
+    this.quizService.getQuestion(id).subscribe(
+      (Question: IQuestion) => {
+        this.editQuestion(Question);
+        this.question = Question;
+      },
+      (err: any) => console.log(err)
+    );
+  }
 
-  // editEmployee(employee: IEmployee) {
-  //   /*
-  //   To bind existing data to form control, we use patchValue
-  //   */
-  //   this.employeeForm.patchValue({
-  //     fullName: employee.fullName,
-  //     contactPreference: employee.contactPreference,
-  //     emailGroup: {
-  //       email: employee.email,
-  //       confirmEmail: employee.email
-  //     },
-  //     phone: employee.phone
-  //   });
-
-  /*
- To bind existing data to form array, we use setControl
- */
-  //   this.addQuestionForm.setControl('skills', this.setExistingSkills(employee.skills));
-  // }
+  editQuestion(question: IQuestion) {
+    this.addQuestionForm.patchValue({
+      CategoryID: question.CategoryID,
+      QnID: question.QnID,
+      Qn: question.Qn,
+      ImageName: question.ImageName,
+      Option1: question.Option1,
+      Option2: question.Option2,
+      Option3: question.Option3,
+      Option4: question.Option4,
+      Answer: question.Answer,
+      Comment: question.Answer
+    });
+  }
 
   logValidationErrors(group: FormGroup = this.addQuestionForm): void {
     Object.keys(group.controls).forEach((key: string) => {
@@ -137,12 +143,12 @@ export class AddQuestionComponent implements OnInit {
         (err: any) => console.log(err)
       );
     }
-    // else if (this.employee.id) {
-    //   this.employeeService.updateEmployee(this.employee).subscribe(
-    //     () => this.router.navigate(['list']),
-    //     (err: any) => console.log(err)
-    //   );
-    // }
+    else if (this.question.QnID) {
+      this.quizService.updateQuestion(this.question).subscribe(
+        () => this.router.navigate(['list']),
+        (err: any) => console.log(err)
+      );
+    }
   }
 
   MapFormValuesToQuestionModel() {

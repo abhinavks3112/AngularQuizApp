@@ -1,4 +1,4 @@
 export class DropdownModel {
-    id: number | undefined;
-    name: string | undefined;
+    Id: number | undefined;
+    Name: string | undefined;
 }
