@@ -1,10 +1,10 @@
 export interface IQuestions {
-    qnID: number;
-    categoryID: number;
-    qn: string;
-    imageName: string;
-    options: string;
-    answer: number;
-    comment: string;
-    participantChoice: number;
+    QnID: number;
+    CategoryID: number;
+    Qn: string;
+    ImageName: string;
+    Options: string;
+    Answer: number;
+    Comment: string;
+    ParticipantChoice: number;
 }

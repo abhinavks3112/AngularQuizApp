@@ -16,7 +16,7 @@ export class ResultComponent implements OnInit {
   ngOnInit(): void {
     this.quizService.correctAnswerCount = 0;
     this.quizService.questions.forEach((element, index) => {
-      if (element.answer === element.participantChoice) {
+      if (element.Answer === element.ParticipantChoice) {
         this.quizService.correctAnswerCount++;
       }
     });

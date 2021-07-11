@@ -5,3 +5,11 @@
 .material-icons{
     font-family: 'Material Icons' !important;
   }
+
+  .badge-green{
+    color: green;
+  }
+
+  .badge-red{
+      color: red;
+  }

@@ -21,7 +21,7 @@ export class QuizComponent implements OnInit {
     this.quizService.getQuestions(1, 10).subscribe((data) => {
       this.quizService.questions = data;
       console.log(this.quizService.questions);
-      console.log(this.quizService.questions[this.quizService.qnProgress].qn);
+      console.log(this.quizService.questions[this.quizService.qnProgress].Qn);
       this.startTimer();
     });
   }
@@ -33,7 +33,7 @@ export class QuizComponent implements OnInit {
   }
 
   Answer(questionId: number, choice: number) {
-    this.quizService.questions[this.quizService.qnProgress].participantChoice = choice;
+    this.quizService.questions[this.quizService.qnProgress].ParticipantChoice = choice;
     this.quizService.qnProgress++;
     if (this.quizService.qnProgress == 10) {
       this.quizService.timer = null;
