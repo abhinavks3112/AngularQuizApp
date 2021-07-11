@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, MaxLengthValidator, MinLengthValidator, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DropdownModel } from 'src/shared/dropdown.model';
+import { DropdownModel } from 'src/shared/dropdown.component';
 import { QuizService } from 'src/shared/quiz.service';
 import { IQuestion } from '../IQuestion';
 
@@ -13,7 +13,7 @@ import { IQuestion } from '../IQuestion';
 export class AddQuestionComponent implements OnInit {
 
   categories: DropdownModel[] = [];
-  question: IQuestion = { QnID: -1, CategoryID: 1, Qn: '', ImageName: '', Option1: '', Option2: '', Option3: '', Option4: '', Answer: 1, Comment: '' };
+  question: IQuestion = { QnID: -1, CategoryId: 1, Qn: '', ImageName: '', Option1: '', Option2: '', Option3: '', Option4: '', Answer: 1, Comment: '' };
 
   addQuestionForm = this.formBuilder.group({
   });
@@ -22,6 +22,9 @@ export class AddQuestionComponent implements OnInit {
 
   // Contain validation message for each validation for each form control
   validationMessages: { [key: string]: any } = {
+    'CategoryID': {
+      'required': 'Category is required.',
+    },
     'Qn': {
       'required': 'Question is required.',
       'minlength': 'Question must be greater than 10 characters.',
@@ -72,21 +75,21 @@ export class AddQuestionComponent implements OnInit {
 
   createForm() {
     this.addQuestionForm = this.formBuilder.group({
-      CategoryID: [1],
+      CategoryID: [1, Validators.required],
       QnID: [-1],
       Qn: ['', Validators.required],
       ImageName: [''],
-      Option1: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(25)]],
-      Option2: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(25)]],
-      Option3: ['', [Validators.minLength(1), Validators.maxLength(25)]],
-      Option4: ['', [Validators.minLength(1), Validators.maxLength(25)]],
+      Option1: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+      Option2: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+      Option3: ['', [Validators.minLength(1), Validators.maxLength(50)]],
+      Option4: ['', [Validators.minLength(1), Validators.maxLength(50)]],
       Answer: [1, [Validators.required, Validators.min(0), Validators.max(3)]],
       Comment: ['']
     });
   }
 
   LoadCategories() {
-    this.quizService.GetQuestionCategories().subscribe(data => {
+    this.quizService.LoadQuestionCategories().subscribe(data => {
       this.categories = data as DropdownModel[];
     },
       error => console.log("Error in fetching categories"),
@@ -96,16 +99,16 @@ export class AddQuestionComponent implements OnInit {
   getQuestion(id: number) {
     this.quizService.getQuestion(id).subscribe(
       (Question: IQuestion) => {
-        this.editQuestion(Question);
         this.question = Question;
       },
-      (err: any) => console.log(err)
+      (err: any) => console.log(err),
+      () => this.editQuestion(this.question)
     );
   }
 
   editQuestion(question: IQuestion) {
     this.addQuestionForm.patchValue({
-      CategoryID: question.CategoryID,
+      CategoryID: question.CategoryId,
       QnID: question.QnID,
       Qn: question.Qn,
       ImageName: question.ImageName,
@@ -114,7 +117,7 @@ export class AddQuestionComponent implements OnInit {
       Option3: question.Option3,
       Option4: question.Option4,
       Answer: question.Answer,
-      Comment: question.Answer
+      Comment: question.Comment
     });
   }
 
@@ -152,6 +155,8 @@ export class AddQuestionComponent implements OnInit {
   }
 
   MapFormValuesToQuestionModel() {
+    this.question.CategoryId = this.addQuestionForm.controls.CategoryID.value;
+    this.question.QnID = this.addQuestionForm.controls.QnID.value;
     this.question.Qn = this.addQuestionForm.controls.Qn.value;
     this.MapOptions();
     this.question.Answer = this.addQuestionForm.controls.Answer.value;
@@ -165,7 +170,7 @@ export class AddQuestionComponent implements OnInit {
       this.question.Option3 = this.addQuestionForm.controls.Option3.value;
     }
     if (this.addQuestionForm.controls.Option4.value != '' && this.addQuestionForm.controls.Option4.value != undefined) {
-      this.question.Option4 = this.addQuestionForm.value.Option4.value;
+      this.question.Option4 = this.addQuestionForm.controls.Option4.value;
     }
   }
 }

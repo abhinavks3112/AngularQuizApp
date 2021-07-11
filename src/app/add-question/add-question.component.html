@@ -1,6 +1,7 @@
 <app-navbar></app-navbar>
-<form [formGroup]="addQuestionForm" (ngSubmit)="onSubmit()">
-    <div class="container-fluid">
+<div class="content-container">
+    <form [formGroup]="addQuestionForm" (ngSubmit)="onSubmit()">
+
         <div class="row">
             <!-- Content START -->
             <div class="col-lg-12 col-md-12 col-sm-12">
@@ -17,6 +18,9 @@
                                     <option value=null disabled="disabled">All Categories</option>
                                     <option *ngFor="let cat of categories" [value]=[cat.Id]>{{ cat.Name }}</option>
                                 </select>
+                                <div class="invalid-feedback" *ngIf="formErrors.CategoryID">
+                                    {{ formErrors.CategoryID }}
+                                </div>
                             </div>
                         </div>
 
@@ -122,6 +126,5 @@
             </div>
             <!-- Content END -->
         </div>
-    </div>
-
-</form>
+    </form>
+</div>

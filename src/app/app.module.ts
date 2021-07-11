@@ -13,6 +13,7 @@ import { QuizService } from 'src/shared/quiz.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AddQuestionComponent } from './add-question/add-question.component';
 import { ListQuestionComponent } from './list-question/list-question.component';
+import { ListCategoryComponent } from './list-category/list-category.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ListQuestionComponent } from './list-question/list-question.component';
     QuizComponent,
     ResultComponent,
     AddQuestionComponent,
-    ListQuestionComponent
+    ListQuestionComponent,
+    ListCategoryComponent
   ],
   imports: [
     BrowserModule,

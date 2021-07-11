@@ -4,8 +4,9 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { IQuestions } from 'src/app/IQuestions';
-import { DropdownModel } from './dropdown.model';
+import { DropdownModel } from './dropdown.component';
 import { IQuestion } from 'src/app/IQuestion';
+import { ICategory } from 'src/app/ICategory';
 
 @Injectable()
 export class QuizService {
@@ -65,8 +66,16 @@ export class QuizService {
         }).pipe(catchError(this.handleError));
     }
 
-    GetQuestionCategories(): Observable<DropdownModel[]> {
-        return this.httpClient.get<DropdownModel[]>(this.baseUrl + "/api/Category/GetCategories", {
+    GetCategories(): Observable<ICategory[]> {
+        return this.httpClient.get<ICategory[]>(this.baseUrl + "/api/Category/GetCategories", {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        }).pipe(catchError(this.handleError));
+    }
+
+    LoadQuestionCategories(): Observable<DropdownModel[]> {
+        return this.httpClient.get<DropdownModel[]>(this.baseUrl + "/api/Category/LoadCategories", {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'
             })
@@ -82,7 +91,7 @@ export class QuizService {
     }
 
     updateQuestion(question: IQuestion): Observable<boolean> {
-        return this.httpClient.put<boolean>(this.baseUrl + "/" + question.QnID, question, {
+        return this.httpClient.put<boolean>(this.baseUrl + "/api/Question/Edit/" + question.QnID, question, {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'
             })
@@ -98,6 +107,22 @@ export class QuizService {
             "QnID": QnID.toString()
         };
         return this.httpClient.get<IQuestion>(this.baseUrl + "/api/Question/Get", { params: params }).pipe(catchError(this.handleError));
+    }
+
+    deleteQuestion(QnID: number) {
+        return this.httpClient.post<boolean>(this.baseUrl + "/api/Question/Delete", QnID, {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        }).pipe(catchError(this.handleError));
+    }
+
+    deleteCategory(Id: number) {
+        return this.httpClient.post<boolean>(this.baseUrl + "/api/Category/Delete", Id, {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        }).pipe(catchError(this.handleError));
     }
 
 }

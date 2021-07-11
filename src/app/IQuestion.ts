@@ -1,6 +1,6 @@
 export interface IQuestion {
     QnID: number;
-    CategoryID: number;
+    CategoryId: number;
     Qn: string;
     ImageName: string;
     Option1: string;

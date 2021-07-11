@@ -6,27 +6,26 @@
         </button>
     </div>
     <div class="table-responsive">
-        <table class="table table-bordered" *ngIf="questions && questions.length">
+        <table class="table table-bordered" *ngIf="categories && categories.length">
             <thead>
                 <tr class="header">
-                    <th>Question</th>
-                    <th>Options</th>
-                    <th>Comments</th>
+                    <th>Name</th>
+                    <th>Description</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let question of questions">
-                    <td>{{ question.Qn }}</td>
-                    <td><span [innerHTML]="getOptions(question)"></span></td>
-                    <td>{{ question.Comment }}</td>
+                <tr *ngFor="let category of categories">
+                    <td>{{ category.Name }}</td>
+                    <td>{{ category.Description }}</td>
                     <td>
-                        <button class="btn btn-primary me-1" (click)="editButtonClick(question.QnID)">
+                        <button class="btn btn-primary me-1" (click)="editButtonClick(category.CategoryId)">
                             <i class="material-icons" style="font-size:16px; vertical-align: middle;">edit</i>
                         </button>
-                        <button class="btn btn-danger" (click)="deleteButtonClick(question.QnID)">
+                        <button class="btn btn-danger" (click)="deleteButtonClick(category.CategoryId)">
                             <i class="material-icons" style="font-size:16px; vertical-align: middle;">delete</i>
                         </button>
+                    </td>
                 </tr>
             </tbody>
         </table>

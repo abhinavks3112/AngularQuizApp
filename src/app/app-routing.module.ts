@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddQuestionComponent } from './add-question/add-question.component';
 import { AuthGuard } from './auth/auth.guard';
+import { ListCategoryComponent } from './list-category/list-category.component';
 import { ListQuestionComponent } from './list-question/list-question.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { RegisterComponent } from './register/register.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'list', component: ListQuestionComponent },
   { path: 'create', component: AddQuestionComponent },
   { path: 'edit/:id', component: AddQuestionComponent },
+  { path: 'listCategory', component: ListCategoryComponent },
   { path: '', redirectTo: '/register', pathMatch: 'full' }
 ];
 
