@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddCategoryComponent } from './add-category/add-category.component';
 import { AddQuestionComponent } from './add-question/add-question.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ListCategoryComponent } from './list-category/list-category.component';
@@ -16,6 +17,8 @@ const routes: Routes = [
   { path: 'create', component: AddQuestionComponent },
   { path: 'edit/:id', component: AddQuestionComponent },
   { path: 'listCategory', component: ListCategoryComponent },
+  { path: 'createCategory', component: AddCategoryComponent },
+  { path: 'editCategory/:id', component: AddCategoryComponent },
   { path: '', redirectTo: '/register', pathMatch: 'full' }
 ];
 

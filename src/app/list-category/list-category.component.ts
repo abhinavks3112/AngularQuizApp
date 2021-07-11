@@ -31,11 +31,11 @@ export class ListCategoryComponent implements OnInit {
   }
 
   editButtonClick(categoryId: number) {
-    this._router.navigate(['/edit', categoryId]);
+    this._router.navigate(['/editCategory', categoryId]);
   }
 
   newButtonClick() {
-    this._router.navigate(['/create']);
+    this._router.navigate(['/createCategory']);
   }
 
   deleteButtonClick(categoryId: number) {

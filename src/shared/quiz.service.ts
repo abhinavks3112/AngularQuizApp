@@ -117,6 +117,29 @@ export class QuizService {
         }).pipe(catchError(this.handleError));
     }
 
+    getCategory(CategoryId: number) {
+        let params = {
+            "CategoryId": CategoryId.toString()
+        };
+        return this.httpClient.get<ICategory>(this.baseUrl + "/api/Category/Get", { params: params }).pipe(catchError(this.handleError));
+    }
+
+    addCategory(category: ICategory): Observable<ICategory> {
+        return this.httpClient.post<ICategory>(this.baseUrl + "/api/Category/Insert", category, {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        }).pipe(catchError(this.handleError));
+    }
+
+    updateCategory(category: ICategory): Observable<boolean> {
+        return this.httpClient.put<boolean>(this.baseUrl + "/api/Category/Edit/" + category.CategoryId, category, {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        }).pipe(catchError(this.handleError));
+    }
+
     deleteCategory(Id: number) {
         return this.httpClient.post<boolean>(this.baseUrl + "/api/Category/Delete", Id, {
             headers: new HttpHeaders({

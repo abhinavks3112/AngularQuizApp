@@ -18,7 +18,7 @@ export class AddQuestionComponent implements OnInit {
   addQuestionForm = this.formBuilder.group({
   });
 
-  pageTitle: string = 'Create Quiz';
+  pageTitle: string = 'Create Question';
 
   // Contain validation message for each validation for each form control
   validationMessages: { [key: string]: any } = {

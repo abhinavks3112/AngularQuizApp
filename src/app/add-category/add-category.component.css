@@ -1,0 +1,12 @@
+.col-lg-12, .col-md-12, .col-sm-12{
+    padding-right: 0!important;
+    padding-left: 0!important;
+}
+.row{
+    margin-right: 0px;
+    margin-left: 0px; 
+}
+.card-header{
+    background-color: #00AA9E;
+    color: white;
+}

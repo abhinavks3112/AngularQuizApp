@@ -14,6 +14,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { AddQuestionComponent } from './add-question/add-question.component';
 import { ListQuestionComponent } from './list-question/list-question.component';
 import { ListCategoryComponent } from './list-category/list-category.component';
+import { AddCategoryComponent } from './add-category/add-category.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ListCategoryComponent } from './list-category/list-category.component';
     ResultComponent,
     AddQuestionComponent,
     ListQuestionComponent,
-    ListCategoryComponent
+    ListCategoryComponent,
+    AddCategoryComponent
   ],
   imports: [
     BrowserModule,
