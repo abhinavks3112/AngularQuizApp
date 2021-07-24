@@ -31,11 +31,12 @@ export class AddQuestionComponent implements OnInit {
       'maxlength': 'Question must be less than 50 characters.',
     },
     'Option1': {
-      'required': 'Email is required',
+      'required': 'Option 1 is required',
       'minlength': 'Option must be greater than 2 characters.',
       'maxlength': 'Option must be less than 50 characters.',
     },
     'Option2': {
+      'required': 'Option 2 is required',
       'minlength': 'Option must be greater than 2 characters.',
       'maxlength': 'Option must be less than 50 characters.',
     },
@@ -170,7 +171,13 @@ export class AddQuestionComponent implements OnInit {
       this.question.Option3 = this.addQuestionForm.controls.Option3.value;
     }
     if (this.addQuestionForm.controls.Option4.value != '' && this.addQuestionForm.controls.Option4.value != undefined) {
+      if(this.question.Option3 == '' || this.question.Option3 == undefined)
+      {
+        this.question.Option3 = this.addQuestionForm.controls.Option4.value;
+      }
+      else{
       this.question.Option4 = this.addQuestionForm.controls.Option4.value;
+      }
     }
   }
 }
