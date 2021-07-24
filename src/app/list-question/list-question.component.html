@@ -5,6 +5,9 @@
             <i class="material-icons mr-1" style="font-size:16px; vertical-align: middle;">add</i>
         </button>
     </div>
+    <div *ngIf="noQuestions" class="text-center">
+        <h3>No questions in the database!!</h3>
+    </div>
     <div class="table-responsive">
         <table class="table table-bordered" *ngIf="questions && questions.length">
             <thead>
@@ -24,7 +27,8 @@
                         <button class="btn btn-primary me-1" (click)="editButtonClick(question.QnID)">
                             <i class="material-icons" style="font-size:16px; vertical-align: middle;">edit</i>
                         </button>
-                        <button class="btn btn-danger" (click)="deleteButtonClick(question.QnID)">
+                        <button class="btn btn-danger" mwlConfirmationPopover popoverTitle='Confirm Delete' popoverMessage='Are you sure you want to delete?'
+                        placement='top left' (confirm)="deleteButtonClick(question.QnID)" (cancel)="cancelClicked = true">
                             <i class="material-icons" style="font-size:16px; vertical-align: middle;">delete</i>
                         </button>
                 </tr>

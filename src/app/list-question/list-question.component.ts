@@ -15,6 +15,8 @@ export class ListQuestionComponent implements OnInit {
   categories: DropdownModel[] = [];
   questionCategories: [] = [];
   questions: IQuestion[] = [];
+  noQuestions: boolean = false;
+  cancelClicked : boolean = false;
 
   constructor(public quizService: QuizService,
     private _router: Router) {
@@ -38,7 +40,11 @@ export class ListQuestionComponent implements OnInit {
 
   LoadQuestions() {
     this.quizService.getAllQuestions().subscribe(
-      (listQuestions: any) => this.questions = listQuestions as IQuestion[],
+      (listQuestions: any) =>{
+        this.questions = listQuestions as IQuestion[];
+        if(this.questions == undefined || this.questions == null || this.questions.length == 0)
+          this.noQuestions = true;
+      },
       (err: any) => console.log("Error in fetching questions: " + err),
       () => { console.log("Questions has been fetched successfully"); }
     );

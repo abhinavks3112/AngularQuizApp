@@ -10,16 +10,16 @@ import { RegisterComponent } from './register/register.component';
 import { ResultComponent } from './result/result.component';
 
 const routes: Routes = [
-  { path: 'register', component: RegisterComponent },
-  { path: 'quiz', component: QuizComponent, canActivate: [AuthGuard] },
-  { path: 'result', component: ResultComponent, canActivate: [AuthGuard] },
+  //{ path: 'register', component: RegisterComponent },
+  { path: 'quiz', component: QuizComponent }, //, canActivate: [AuthGuard] },
+  { path: 'result', component: ResultComponent }, //, canActivate: [AuthGuard] },
   { path: 'list', component: ListQuestionComponent },
   { path: 'create', component: AddQuestionComponent },
   { path: 'edit/:id', component: AddQuestionComponent },
   { path: 'listCategory', component: ListCategoryComponent },
   { path: 'createCategory', component: AddCategoryComponent },
   { path: 'editCategory/:id', component: AddCategoryComponent },
-  { path: '', redirectTo: '/register', pathMatch: 'full' }
+  { path: '', redirectTo: '/list', pathMatch: 'full' }
 ];
 
 @NgModule({

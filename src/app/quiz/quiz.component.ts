@@ -22,7 +22,7 @@ export class QuizComponent implements OnInit {
       this.quizService.questions = data;
       console.log(this.quizService.questions);
       console.log(this.quizService.questions[this.quizService.qnProgress].Qn);
-      this.startTimer();
+      //this.startTimer();
     });
   }
 
@@ -36,7 +36,7 @@ export class QuizComponent implements OnInit {
     this.quizService.questions[this.quizService.qnProgress].ParticipantChoice = choice;
     this.quizService.qnProgress++;
     if (this.quizService.qnProgress == 10) {
-      this.quizService.timer = null;
+     // this.quizService.timer = null;
       this.router.navigate(['/result']);
     }
   }

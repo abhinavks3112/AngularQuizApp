@@ -1,29 +1,29 @@
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Quiz App</a>
+        <a class="navbar-brand">Quiz App</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <li class="nav-item" [routerLinkActive]="['active']">
+                    <a class="nav-link active" aria-current="page" [routerLink]="['/']">Home</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Quiz
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Category</a></li>
-                        <li><a class="dropdown-item" href="#">Question</a></li>
-                        <li><a class="dropdown-item" href="#">Start Quiz</a></li>
+                        <li [routerLinkActive]="['active']"><a class="dropdown-item" [routerLink]="['/listCategory']">Category</a></li>
+                        <li [routerLinkActive]="['active']"><a class="dropdown-item" [routerLink]="['/list']">Question</a></li>
+                        <li [routerLinkActive]="['active']"><a class="dropdown-item" [routerLink]="['/quiz']">Start Quiz</a></li>
                     </ul>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" (click)="Signout()">Signout</a>
-                </li>
+                </li> -->
             </ul>
         </div>
     </div>
